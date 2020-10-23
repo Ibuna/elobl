@@ -13,7 +13,7 @@ Install all dependencies with:
 ```bash
 composer install
 ```
-Add the database connection to the .env file an run the migration:
+Add the database connection to the .env file and run the migration:
 
 ```bash
 php artisan migrate
