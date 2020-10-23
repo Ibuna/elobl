@@ -23,7 +23,7 @@ Add the bundesliga data (db_dump/bundesliga.sql) to the database.
 
 ## Usage
 
-Run the following command to calculate the elo ranking (may take up to 30 minutes):
+Run the following command to calculate the elo ranking (may take up to an hour or longer):
 
 ```bash
 php artisan bundesliga:calculate

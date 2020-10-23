@@ -11,6 +11,7 @@ use App\Models\EloRanking;
 use Carbon\CarbonPeriod;
 use Illuminate\Database\Eloquent\Collection;
 use App\User;
+use Illuminate\Support\Facades\Storage;
 
 class BundesligaController extends Controller
 {
@@ -135,5 +136,34 @@ class BundesligaController extends Controller
         // Elowerte zurückgeben
 
         return $eloArray;
+    }
+
+    public function generateCSV(){
+        // get days since the beginning of bundesliga
+        $start = config('bundesliga.csv_start_date');
+        $end = config('bundesliga.csv_end_date');
+        $period = CarbonPeriod::create($start, $end);
+        $dates = new Collection();
+
+        // Iterate over the period
+        foreach ($period as $date) {
+            $dates->push($date);
+        }
+
+        $clubs = EloRanking::all();
+
+        Storage::put('/public/elo_bundesliga.csv', 'date,club,elo' . "\r\n");
+
+        foreach ($dates as $date) {
+            foreach($clubs as $club) {
+                $unserializedArray = unserialize($club->elo_history);
+                if(array_key_exists($date->format('Y-m-d'), $unserializedArray)){
+                    $elo = $unserializedArray[$date->format('Y-m-d')];
+                    $current = Storage::get('/public/elo_bundesliga.csv');
+                    $current = $current . $date->format('Y-m-d') . ',' . $club->club . ',' . $elo . "\r\n";
+                    Storage::put('/public/elo_bundesliga.csv', $current);
+                }
+            }
+        }
     }
 }
