@@ -1,4 +1,4 @@
-![Alt text](/github_image/header_image.jpg?raw=true "Bundesliga Elo Ranking")
+![Alt text](/github_image/header_image.jpg?raw=true "Bundesliga Elo Ranking" =250x)
 
 # Bundesliga Elo Ranking
 
@@ -26,11 +26,6 @@ Run the following command to calculate the elo ranking (may take up to 30 minute
 ```bash
 php artisan bundesliga:calculate
 ```
-
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
 
 ## About Laravel
 
