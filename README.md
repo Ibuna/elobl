@@ -4,7 +4,7 @@
 
 # Bundesliga Elo Ranking
 
-The Bundesliga Elo ranking is the source of truth.
+The Bundesliga Elo ranking.
 
 ## Installation
 
@@ -28,6 +28,14 @@ Run the following command to calculate the elo ranking (may take up to an hour o
 ```bash
 php artisan bundesliga:calculate
 ```
+
+## Visualization
+
+The visualization was done with [barchartrace](https://github.com/FabDevGit/barchartrace)
+
+<p align="center">
+<img src="/github_image/BarChart.jpg?raw=true" alt="Bundesliga Elo Ranking" width="250">
+</p>
 
 ## About Laravel
 
