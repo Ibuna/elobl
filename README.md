@@ -1,4 +1,6 @@
+<p align="center">
 <img src="/github_image/header_image.jpg?raw=true" alt="Bundesliga Elo Ranking" width="250">
+</p>
 
 # Bundesliga Elo Ranking
 
