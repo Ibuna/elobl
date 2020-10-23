@@ -11,7 +11,7 @@ The Bundesliga Elo ranking.
 Install all dependencies with:
 
 ```bash
-coposer install
+composer install
 ```
 Add the database connection to the .env file an run the migration:
 
