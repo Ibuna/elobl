@@ -1,4 +1,4 @@
-![Alt text](/github_image/header_image.jpg?raw=true "Bundesliga Elo Ranking" =250x)
+![Bundesliga Elo Ranking](/github_image/header_image.jpg?raw=true | width=250)
 
 # Bundesliga Elo Ranking
 
