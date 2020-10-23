@@ -34,7 +34,7 @@ php artisan bundesliga:calculate
 The visualization was done with [barchartrace](https://github.com/FabDevGit/barchartrace)
 
 <p align="center">
-<img src="/github_image/BarChart.jpg?raw=true" alt="Bundesliga Elo Ranking" width="250">
+<img src="/github_image/BarChart.jpg?raw=true" alt="Bundesliga Elo Ranking" width="800">
 </p>
 
 ## About Laravel
