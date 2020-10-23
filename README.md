@@ -37,6 +37,12 @@ The visualization was done with [barchartrace](https://github.com/FabDevGit/barc
 <img src="/github_image/BarChart.jpg?raw=true" alt="Bundesliga Elo Ranking" width="800">
 </p>
 
+## TODO
+
+1) Visualize with [flourish studio](https://flourish.studio/) 
+2) Only show clubs which took part in the season that is displayed.
+3) Performance.
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
