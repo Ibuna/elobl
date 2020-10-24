@@ -47,7 +47,7 @@ class BundesligaController extends Controller
         foreach ($dates as $date) {
 
             // get games for this day
-            $spiele = Result::where('anstoss', '<', $date->addDays(1))->where('anstoss', '<', $date->subDays(1))->get();
+            $spiele = Result::where('anstoss', '<', $date->addDays(1)->format('Y-m-d'))->where('anstoss', '>', $date->subDays(1)->format('Y-m-d'))->get();
 
             foreach ($spiele as $spiel) {
                 $hv = Club::where('verein_id', $spiel->heimverein)->get()->first();

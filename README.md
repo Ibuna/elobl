@@ -41,7 +41,7 @@ The visualization was done with [barchartrace](https://github.com/FabDevGit/barc
 
 1) Visualize with [flourish studio](https://flourish.studio/) 
 2) Only show clubs which took part in the season that is displayed.
-3) Performance.
+3) Draws.
 
 ## About Laravel
 
