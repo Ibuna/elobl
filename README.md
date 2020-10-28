@@ -42,6 +42,7 @@ The visualization was done with [barchartrace](https://github.com/FabDevGit/barc
 1) Visualize with [flourish studio](https://flourish.studio/) 
 2) Only show clubs which took part in the season that is displayed.
 3) Change elo calculation to [FIFA world ranking formula](https://de.wikipedia.org/wiki/FIFA-Weltrangliste#Berechnungsmethode). Draws will be calculated as well.
+4) Character encoding.
 
 ## About Laravel
 

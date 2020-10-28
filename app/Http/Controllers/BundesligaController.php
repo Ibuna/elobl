@@ -74,28 +74,26 @@ class BundesligaController extends Controller
                     $heimverein->save();
                     $gastverein->save();
                 }
-
-                // loop throug all clubs and persist elo points for this day
-                $clubs = EloRanking::all();
-                foreach ($clubs as $club) {
-                    $unserializedEloArray = array();
-
-                    $eloArray = $club->elo_history;
-
-                    // save new elo points
-                    if ($eloArray != null) {
-                        $unserializedEloArray = unserialize($eloArray);
-                        $unserializedEloArray[$date->format('Y-m-d')] = $club->elo;
-                        $club->elo_history = serialize($unserializedEloArray);
-                        $club->save();
-                    } else {
-                        $unserializedEloArray[$date->format('Y-m-d')] = $club->elo;
-                        $club->elo_history = serialize($unserializedEloArray);
-                        $club->save();
-                    }
-                }
-
                 $nodraw = false;
+            }
+            // loop throug all clubs and persist elo points for this day
+            $clubs = EloRanking::all();
+            foreach ($clubs as $club) {
+                $unserializedEloArray = array();
+
+                $eloArray = $club->elo_history;
+
+                // save new elo points
+                if ($eloArray != null) {
+                    $unserializedEloArray = unserialize($eloArray);
+                    $unserializedEloArray[$date->format('Y-m-d')] = $club->elo;
+                    $club->elo_history = serialize($unserializedEloArray);
+                    $club->save();
+                } else {
+                    $unserializedEloArray[$date->format('Y-m-d')] = $club->elo;
+                    $club->elo_history = serialize($unserializedEloArray);
+                    $club->save();
+                }
             }
         }
     }
@@ -164,6 +162,67 @@ class BundesligaController extends Controller
                     Storage::put('/public/elo_bundesliga.csv', $current);
                 }
             }
+        }
+    }
+
+    public function generateCSVForFlourish() {
+        // get days
+        $start = config('bundesliga.csv_start_date');
+        $end = config('bundesliga.csv_end_date');
+        $period = CarbonPeriod::create($start, $end);
+        $dates = new Collection();
+
+        // Iterate over the period
+        foreach ($period as $date) {
+            // check for games on that date
+            $spiele = Result::where('anstoss', '<', $date->addDays(1)->format('Y-m-d'))->where('anstoss', '>', $date->subDays(1)->format('Y-m-d'))->get();
+            if(!$spiele->isEmpty()) {
+                // get next tuesday
+                $eloDate = $date->next('Thursday');
+                $exists = false;
+                foreach($dates as $date) {
+                    if($eloDate->format('Y-m-d') === $date) {
+                        $exists = true;
+                    }
+                }
+                if(!$exists) {
+                    $dates->push($eloDate->format('Y-m-d'));
+                }
+            }
+        }
+
+        $clubs = EloRanking::all();
+        // delete all clubs that doesn't make a game in this time period
+        foreach($clubs as $key => $club) {
+            $games = Result::where('anstoss', '>=', $start)->where('anstoss', '<=', $end)->get();
+            $checkHomeGames= $games->contains('heimverein', $club->club_id);
+            $checkAwayGames= $games->contains('gastverein', $club->club_id);
+            if(!$checkHomeGames && !$checkAwayGames) {
+                $clubs->forget($key);
+            }
+        }
+
+        Storage::put('/public/elo_bundesliga_flourish.csv', 'Team,');
+        $current = Storage::get('/public/elo_bundesliga_flourish.csv');
+
+        foreach($dates as $date) {
+            $current = $current . $date . ',';
+        }
+        $current = $current . "\r\n";
+        Storage::put('/public/elo_bundesliga_flourish.csv', $current);
+
+        foreach($clubs as $club) {
+            $current = Storage::get('/public/elo_bundesliga_flourish.csv');
+            $unserializedArray = unserialize($club->elo_history);
+            $current = $current . $club->club . ',';
+            foreach ($dates as $date) {
+                $elo = $unserializedArray[$date];
+                $current = $current . $elo . ',';
+            }
+            // remove last comma
+            substr($current, 0, -1);
+            $current = $current . "\r\n";
+            Storage::put('/public/elo_bundesliga_flourish.csv', $current);
         }
     }
 }

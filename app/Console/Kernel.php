@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         \App\Console\Commands\Bundesliga::class,
         \App\Console\Commands\GenerateCSV::class,
+        \App\Console\Commands\GenerateCSVForFlourish::class,
     ];
 
     /**
