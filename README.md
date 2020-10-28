@@ -6,6 +6,8 @@
 
 The Bundesliga Elo ranking.
 
+The elo calculation is calculated by the formula which is used to calculate the [FIFA world ranking](https://de.wikipedia.org/wiki/FIFA-Weltrangliste#Berechnungsmethode). 
+
 ## Installation
 
 Install all dependencies with:
@@ -46,9 +48,6 @@ See this one as a first example:
 ## TODO
 
 1) Add more visualizations with [flourish studio](https://flourish.studio/) 
-2) Only show clubs which took part in the season that is displayed.
-3) Change elo calculation to [FIFA world ranking formula](https://de.wikipedia.org/wiki/FIFA-Weltrangliste#Berechnungsmethode). Draws will be calculated as well.
-4) Character encoding.
 
 ## About Laravel
 

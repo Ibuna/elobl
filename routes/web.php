@@ -16,7 +16,3 @@ use App\Http\Controllers\BundesligaController;
 
 Route::get('calculatebundesliga', [BundesligaController::class, 'calculateEloRanking']);
 Route::get('flourish', [BundesligaController::class, 'generateCSVForFlourish']);
-
-Route::get('test', function() {
-    dd('test');
-});

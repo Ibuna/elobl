@@ -58,23 +58,22 @@ class BundesligaController extends Controller
                 if ($spiel->heimtore > $spiel->gasttore) {
                     $resultheimverein = 1;
                     $resultgastverein = 0;
-                    $nodraw = true;
                 } elseif ($spiel->heimtore < $spiel->gasttore) {
                     $resultheimverein = 0;
                     $resultgastverein = 1;
-                    $nodraw = true;
+                } elseif($spiel->heimtore === $spiel->gasttore) {
+                    $resultheimverein = 0.5;
+                    $resultgastverein = 0.5;
                 }
 
-                if ($nodraw) {
-                    // calculate elo
-                    $result = $this->calculateElo($heimverein, $gastverein, $resultheimverein, $resultgastverein);
-                    // persist new elo points
-                    $heimverein->elo = $result[2];
-                    $gastverein->elo = $result[3];
-                    $heimverein->save();
-                    $gastverein->save();
-                }
-                $nodraw = false;
+                // calculate elo
+                $result = $this->calculateElo($heimverein, $gastverein, $resultheimverein, $resultgastverein);
+                // persist new elo points
+                $heimverein->elo = $result[2];
+                $gastverein->elo = $result[3];
+                $heimverein->save();
+                $gastverein->save();
+
             }
             // loop throug all clubs and persist elo points for this day
             $clubs = EloRanking::all();
@@ -115,13 +114,15 @@ class BundesligaController extends Controller
         $eloverein1 = $verein1->elo;
         $eloverein2 = $verein2->elo;
 
+        // Gewichtung
+
         // Neue Elowerte berechnen
 
-        $expectancyValueverein1 = 1 / (1 + pow(10, (($eloverein2 - $eloverein1) / 200)));
-        $eloNewverein1 = $eloverein1 + 15 * ($resultverein1 - $expectancyValueverein1);
+        $expectancyValueverein1 = 1 / (pow(10, (($eloverein2 - $eloverein1) / 600)) + 1);
+        $eloNewverein1 = $eloverein1 + config('bundesliga.elo_weight') * ($resultverein1 - $expectancyValueverein1);
 
-        $expectancyValueverein2 = 1 / (1 + pow(10, (($eloverein1 - $eloverein2) / 200)));
-        $eloNewverein2 = $eloverein2 + 15 * ($resultverein2 - $expectancyValueverein2);
+        $expectancyValueverein2 = 1 / (pow(10, (($eloverein1 - $eloverein2) / 600)) + 1);
+        $eloNewverein2 = $eloverein2 + config('bundesliga.elo_weight') * ($resultverein2 - $expectancyValueverein2);
 
         $eloDiffverein1 = $eloNewverein1 - $eloverein1;
         $eloDiffverein2 = $eloNewverein2 - $eloverein2;
