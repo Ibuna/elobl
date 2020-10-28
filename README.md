@@ -39,7 +39,7 @@ The first visualization was done with [barchartrace](https://github.com/FabDevGi
 <img src="/github_image/BarChart.jpg?raw=true" alt="Bundesliga Elo Ranking" width="800">
 </p>
 
-More visualizations will be done wit flourish studio.
+More visualizations will be done with flourish studio.
 
 See this one as a first example:
 
