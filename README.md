@@ -43,7 +43,8 @@ More visualizations will be done with flourish studio.
 
 See this one as a first example:
 
-[Bundesliga 60ies with Headis elo formula](https://public.flourish.studio/visualisation/4159809/) 
+[Bundesliga 60ies](https://public.flourish.studio/visualisation/4159809/) 
+[Bundesliga 70ies](https://public.flourish.studio/visualisation/4165418/) 
 
 ## TODO
 
