@@ -44,6 +44,7 @@ More visualizations will be done with flourish studio.
 Available visualizations:
 
 [Bundesliga 60ies](https://public.flourish.studio/visualisation/4159809/) 
+
 [Bundesliga 70ies](https://public.flourish.studio/visualisation/4165418/) 
 
 ## TODO
