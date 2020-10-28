@@ -31,15 +31,21 @@ php artisan bundesliga:calculate
 
 ## Visualization
 
-The visualization was done with [barchartrace](https://github.com/FabDevGit/barchartrace)
+The first visualization was done with [barchartrace](https://github.com/FabDevGit/barchartrace)
 
 <p align="center">
 <img src="/github_image/BarChart.jpg?raw=true" alt="Bundesliga Elo Ranking" width="800">
 </p>
 
+More visualizations will be done wit flourish studio.
+
+See this one as a first example:
+
+[Bundesliga 60ies with Headis elo formula](https://public.flourish.studio/visualisation/4159809/) 
+
 ## TODO
 
-1) Visualize with [flourish studio](https://flourish.studio/) 
+1) Add more visualizations with [flourish studio](https://flourish.studio/) 
 2) Only show clubs which took part in the season that is displayed.
 3) Change elo calculation to [FIFA world ranking formula](https://de.wikipedia.org/wiki/FIFA-Weltrangliste#Berechnungsmethode). Draws will be calculated as well.
 4) Character encoding.
