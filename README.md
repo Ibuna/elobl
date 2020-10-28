@@ -6,7 +6,7 @@
 
 The Bundesliga Elo ranking.
 
-The elo calculation is calculated by the formula which is used to calculate the [FIFA world ranking](https://de.wikipedia.org/wiki/FIFA-Weltrangliste#Berechnungsmethode). 
+The elo value is calculated by the formula which is used to calculate the [FIFA world ranking](https://de.wikipedia.org/wiki/FIFA-Weltrangliste#Berechnungsmethode). 
 
 ## Installation
 
