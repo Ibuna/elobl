@@ -35,17 +35,25 @@ php artisan bundesliga:calculate
 
 The first visualization was done with [barchartrace](https://github.com/FabDevGit/barchartrace)
 
-<p align="center">
-<img src="/github_image/BarChart.jpg?raw=true" alt="Bundesliga Elo Ranking" width="800">
-</p>
-
 More visualizations will be done with flourish studio.
+
+<p align="center">
+<img src="/github_image/2k00s.jpg?raw=true" alt="Bundesliga Elo Ranking" width="800">
+</p>
 
 Available visualizations:
 
 [Bundesliga 60ies](https://public.flourish.studio/visualisation/4159809/) 
 
 [Bundesliga 70ies](https://public.flourish.studio/visualisation/4165418/) 
+
+[Bundesliga 80ies](https://public.flourish.studio/visualisation/4167137/) 
+
+[Bundesliga 90ies](https://public.flourish.studio/visualisation/4171797/) 
+
+[Bundesliga 2k00s](https://public.flourish.studio/visualisation/4171855/) 
+
+[Bundesliga 2k10s](https://public.flourish.studio/visualisation/4171899/) 
 
 ## TODO
 
