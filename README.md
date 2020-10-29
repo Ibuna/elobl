@@ -43,6 +43,8 @@ More visualizations will be done with flourish studio.
 
 Available visualizations:
 
+[Bundesliga alltime (clubs with more than 1500 played games)](https://public.flourish.studio/visualisation/4172740/)
+
 [Bundesliga 60ies](https://public.flourish.studio/visualisation/4159809/) 
 
 [Bundesliga 70ies](https://public.flourish.studio/visualisation/4165418/) 

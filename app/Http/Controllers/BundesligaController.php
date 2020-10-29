@@ -178,7 +178,7 @@ class BundesligaController extends Controller
             // check for games on that date
             $spiele = Result::where('anstoss', '<', $date->addDays(1)->format('Y-m-d'))->where('anstoss', '>', $date->subDays(1)->format('Y-m-d'))->get();
             if(!$spiele->isEmpty()) {
-                // get next tuesday
+                // get next thursday
                 $eloDate = $date->next('Thursday');
                 $exists = false;
                 foreach($dates as $date) {
@@ -193,6 +193,9 @@ class BundesligaController extends Controller
         }
 
         $clubs = EloRanking::all();
+        // minimum number of games
+        $clubs = $this->getClubsWithMoreThanANumberOfGames($clubs, config('bundesliga.min_number_games'));
+
         // delete all clubs that doesn't make a game in this time period
         foreach($clubs as $key => $club) {
             $games = Result::where('anstoss', '>=', $start)->where('anstoss', '<=', $end)->get();
@@ -225,5 +228,15 @@ class BundesligaController extends Controller
             $current = $current . "\r\n";
             Storage::put('/public/elo_bundesliga_flourish.csv', $current);
         }
+    }
+
+    public function getClubsWithMoreThanANumberOfGames($clubs, $number = 0) {
+        foreach($clubs as $key => $club) {
+            $spiele = Result::where('heimverein', $club->club_id)->orWhere('gastverein', $club->club_id)->get();
+            if($spiele->count() < $number) {
+                $clubs->forget($key);
+            }
+        }
+        return $clubs;
     }
 }
